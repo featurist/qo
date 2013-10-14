@@ -1,0 +1,11 @@
+#! env node
+
+var qo = require('..');
+
+qo.run(function (error) {
+  setTimeout(function () {
+    if (error) {
+      throw error;
+    }
+  }, 0);
+});
