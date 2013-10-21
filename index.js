@@ -1,6 +1,6 @@
 (function() {
     var self = this;
-    var gen1_asyncIf, gen2_asyncIfElse, fs, path, pogo, argv, findParentDirectoryWhere, findQo, defineTasks, isFunctionAsynchronous, runTaskFrom, displayTasks;
+    var gen1_asyncIf, gen2_asyncIfElse, fs, path, pogo, argv, findParentDirectoryWhere, findQo, defineTasks, isFunctionAsynchronous, parseArgs, runTaskFromWithArgs, displayTasks;
     gen1_asyncIf = function(condition, thenBody, cb) {
         if (condition) {
             try {
@@ -132,7 +132,19 @@
     isFunctionAsynchronous = function(f) {
         return /function(.*continuation)/.test(f.toString());
     };
-    runTaskFrom = function(name, tasks, continuation) {
+    parseArgs = function() {
+        var args, s;
+        args = argv._.slice(0);
+        for (s in argv) {
+            (function(s) {
+                if (argv.hasOwnProperty(s)) {
+                    args[s] = argv[s];
+                }
+            })(s);
+        }
+        return args;
+    };
+    runTaskFromWithArgs = function(name, tasks, args, continuation) {
         var gen17_arguments = Array.prototype.slice.call(arguments, 0, arguments.length - 1);
         continuation = arguments[arguments.length - 1];
         if (!(continuation instanceof Function)) {
@@ -140,6 +152,7 @@
         }
         name = gen17_arguments[0];
         tasks = gen17_arguments[1];
+        args = gen17_arguments[2];
         var task;
         task = tasks[name];
         gen2_asyncIfElse(task, function(continuation) {
@@ -154,14 +167,14 @@
                 if (!(continuation instanceof Function)) {
                     throw new Error("asynchronous function called synchronously");
                 }
-                task.function(argv, continuation);
+                task.function(args, continuation);
             }, function(continuation) {
                 var gen20_arguments = Array.prototype.slice.call(arguments, 0, arguments.length - 1);
                 continuation = arguments[arguments.length - 1];
                 if (!(continuation instanceof Function)) {
                     throw new Error("asynchronous function called synchronously");
                 }
-                continuation(void 0, task.function(argv));
+                continuation(void 0, task.function(args));
             }, continuation);
         }, function(continuation) {
             var gen21_arguments = Array.prototype.slice.call(arguments, 0, arguments.length - 1);
@@ -218,6 +231,7 @@
                         }
                         var tasks, taskName;
                         tasks = defineTasks();
+                        process.chdir(path.dirname(qo));
                         require(qo);
                         taskName = argv._.shift();
                         gen2_asyncIfElse(taskName, function(continuation) {
@@ -226,7 +240,7 @@
                             if (!(continuation instanceof Function)) {
                                 throw new Error("asynchronous function called synchronously");
                             }
-                            runTaskFrom(taskName, tasks, continuation);
+                            runTaskFromWithArgs(taskName, tasks, parseArgs(), continuation);
                         }, function(continuation) {
                             var gen27_arguments = Array.prototype.slice.call(arguments, 0, arguments.length - 1);
                             continuation = arguments[arguments.length - 1];

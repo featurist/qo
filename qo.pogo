@@ -1,4 +1,4 @@
-ps = require './ps'
+ps = require 'qo-ps'
 pogo = require 'pogo'
 
 task 'build'

@@ -36,14 +36,23 @@ define tasks () =
 is function (f) asynchronous =
     r/function(.*continuation)/.test (f.to string ())
 
-run task (name) from (tasks) =
+parse args () =
+    args = argv._.slice 0
+
+    for @(s) in (argv)
+        if (argv.has own property (s))
+            args.(s) = argv.(s)
+
+    args
+
+run task (name) from (tasks) with args (args) =
     task = tasks.(name)
 
     if (task)
         if (is function (task.function) asynchronous)
-            task.function! (argv)
+            task.function! (args)
         else
-            task.function (argv)
+            task.function (args)
     else
         process.stderr.write "could not find task `#(name)'"
         process.exit 1
@@ -69,11 +78,12 @@ exports.run () =
 
     if (qo)
         tasks = define tasks ()
+        process.chdir (path.dirname (qo))
         require (qo)
 
         task name = argv._.shift ()
         if (task name)
-            run task! (task name) from (tasks)
+            run task! (task name) from (tasks) with args (parse args ())
         else
             display tasks (tasks)
     else
