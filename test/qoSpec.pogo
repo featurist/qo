@@ -4,6 +4,7 @@ ps = require '../../qo-ps'
 fs = require 'fs'
 path = require 'path'
 require 'chai'.should ()
+child process = require 'child_process'
 
 describe 'qo'
     write qo file! (fn) that does (s) on (task) =
@@ -36,6 +37,13 @@ describe 'qo'
 
             it 'runs that file, with the files directory as the current directory'
                 qo! ('run', cwd: 'test/scratch/a/b/c').should.match r/\/test\/scratch\/a$/m
+
+        context 'when there is no qo.pogo'
+            it 'reports an error' @(done)
+                child process.exec (path.join (process.cwd (), 'bin/qo'), {cwd = '/'}) @(e, out, err)
+                    err.should.match r/couldn't find/
+                    done ()
+            
 
     describe 'arguments'
         describe 'argument list'

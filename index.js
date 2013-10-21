@@ -107,7 +107,11 @@
             } else {
                 try {
                     foundDir = gen14_asyncResult;
-                    continuation(void 0, path.join(foundDir, "qo.pogo"));
+                    if (foundDir) {
+                        continuation(void 0, path.join(foundDir, "qo.pogo"));
+                    } else {
+                        continuation();
+                    }
                 } catch (gen15_exception) {
                     continuation(gen15_exception);
                 }

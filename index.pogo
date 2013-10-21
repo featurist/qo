@@ -19,7 +19,8 @@ find qo! =
         fs.exists (path.join (dir, 'qo.pogo')) @(e)
             continuation (nil, e)
 
-    path.join (found dir, 'qo.pogo')
+    if (found dir)
+        path.join (found dir, 'qo.pogo')
 
 define tasks () =
     tasks = {}
