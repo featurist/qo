@@ -1,6 +1,6 @@
 # qo
 
-A task runner for insect people. And people who use [pogoscript](http://pogoscript.org/).
+A task runner for insect people. And for people who use [pogoscript](http://pogoscript.org/).
 
 ## how to use
 
