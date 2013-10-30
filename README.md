@@ -56,7 +56,8 @@ Then
 
 Then
 
-    qo
+    # qo
+    tasks:
 
         hi, says hi
 
