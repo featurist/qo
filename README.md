@@ -2,6 +2,10 @@
 
 A task runner for insect people. And for people who use [pogoscript](http://pogoscript.org/).
 
+## install
+
+    npm install qo
+
 ## how to use
 
 Write a file `qo.pogo`:
