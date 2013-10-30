@@ -74,3 +74,30 @@ describe 'qo'
 
             it 'presence indicates true'
                 qo! 'run --cat' (cwd: 'test/scratch').should.equal "[ true, undefined ]\n"
+
+    describe 'descriptions'
+        before each
+            mkdirp! 'test/scratch'
+            write qo file! 'test/scratch/qo.pogo' containing
+                'task "a"
+                     console.log "running stuff"
+
+                 task "b" (desc: "runs b")
+                     console.log "running stuff"
+
+                 task "c" (description: "runs c")
+                     console.log "running stuff"'
+        
+        it 'prints the tasks and their descriptions'
+            output =
+                'tasks:
+
+                     a
+
+                     b, runs b
+
+                     c, runs c
+                 
+                 '
+
+            qo! '' (cwd: 'test/scratch').should.equal (output)

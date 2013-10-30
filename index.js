@@ -123,11 +123,12 @@
         tasks = {};
         global.task = function(name, $function, gen16_options) {
             var self = this;
-            var description;
+            var description, desc;
             description = gen16_options !== void 0 && Object.prototype.hasOwnProperty.call(gen16_options, "description") && gen16_options.description !== void 0 ? gen16_options.description : void 0;
+            desc = gen16_options !== void 0 && Object.prototype.hasOwnProperty.call(gen16_options, "desc") && gen16_options.desc !== void 0 ? gen16_options.desc : void 0;
             return tasks[name] = {
                 "function": $function,
-                description: description,
+                description: desc || description,
                 name: name
             };
         };
@@ -201,7 +202,7 @@
                     task = tasks[tn];
                     description = function() {
                         if (task.description) {
-                            return " - " + task.description;
+                            return ", " + task.description;
                         } else {
                             return "";
                         }

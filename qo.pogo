@@ -5,4 +5,4 @@ task 'build'
     pogo.compile file! 'index.pogo'
 
 task 'test' (description: 'test with mocha')
-    ps.spawn! 'mocha'
+    ps.spawn! 'mocha' 'test/qoSpec.pogo'

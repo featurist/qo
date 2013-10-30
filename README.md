@@ -51,14 +51,14 @@ Then
 
 ### task descriptions
 
-    task 'hi' (description: 'says hi')
+    task 'hi' (desc: 'says hi')
         console.log 'hi'
 
 Then
 
     qo
 
-        hi - says hi
+        hi, says hi
 
 # pogoscript
 

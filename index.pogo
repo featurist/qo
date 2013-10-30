@@ -25,10 +25,10 @@ find qo! =
 define tasks () =
     tasks = {}
 
-    global.task (name, function, description: nil) =
+    global.task (name, function, description: nil, desc: nil) =
         tasks.(name) = {
             function = function
-            description = description
+            description = desc @or description
             name = name
         }
 
@@ -67,7 +67,7 @@ display tasks (tasks) =
 
             description =
                 if (task.description)
-                    " - #(task.description)"
+                    ", #(task.description)"
                 else
                     ''
 
