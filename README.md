@@ -49,6 +49,17 @@ Then
     # qo copy
     all done
 
+### task descriptions
+
+    task 'hi' (description: 'says hi')
+        console.log 'hi'
+
+Then
+
+    qo
+
+        hi - says hi
+
 # pogoscript
 
 `qo` uses pogoscript because it does asynchronous stuff very nicely. Learn more about pogoscript from pogoscript's [cheatsheet](http://pogoscript.org/cheatsheet.html).
