@@ -45,7 +45,7 @@ Inevitably your tasks will need to be asynchronous.
     ncp = require 'ncp'
 
     task 'copy'
-        ncp! 'original.txt' 'copy.txt'
+        ncp 'original.txt' 'copy.txt'!
         console.log 'all done'
 
 Then
