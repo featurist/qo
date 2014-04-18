@@ -1,6 +1,6 @@
 {
   "name": "qo",
-  "version": "0.0.7",
+  "version": "0.0.10",
   "description": "finally, a task runner designed for insect people",
   "main": "index.js",
   "bin": "bin/qo",
@@ -11,7 +11,7 @@
   "author": "Tim Macfarlane <timmacfarlane@gmail.com>",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "pogo": "",
+    "pogo": "*",
     "optimist": "~0.6.0"
   },
   "devDependencies": {
