@@ -1,6 +1,6 @@
 {
   "name": "qo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "finally, a task runner designed for insect people",
   "main": "index.js",
   "bin": "bin/qo",
@@ -14,13 +14,17 @@
     "optimist": "~0.6.0"
   },
   "peerDependencies": {
-    "pogo": "*"
+    "pogo": "~0.7.1"
+  },
+  "scripts": {
+    "test": "mocha test/*Spec.pogo"
   },
   "devDependencies": {
     "qo-ps": "0.0.4",
     "mkdirp": "~0.3.5",
     "rimraf": "~2.2.2",
-    "chai": "~1.8.1"
+    "chai": "~1.8.1",
+    "mocha": "~1.18.2"
   },
   "repository": {
     "type": "git",
