@@ -5,8 +5,8 @@
   "main": "index.js",
   "bin": "bin/qo",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "node_modules/.bin/pogo -c index.pogo"
+    "test": "mocha test/*Spec.pogo",
+    "prepublish": "pogo -c index.pogo"
   },
   "author": "Tim Macfarlane <timmacfarlane@gmail.com>",
   "license": "BSD-2-Clause",
@@ -14,17 +14,15 @@
     "optimist": "~0.6.0"
   },
   "peerDependencies": {
-    "pogo": "~0.7.1"
-  },
-  "scripts": {
-    "test": "mocha test/*Spec.pogo"
+    "pogo": "~0.8.0"
   },
   "devDependencies": {
     "qo-ps": "0.0.4",
     "mkdirp": "~0.3.5",
     "rimraf": "~2.2.2",
     "chai": "~1.8.1",
-    "mocha": "~1.18.2"
+    "mocha": "~1.18.2",
+    "pogo": "~0.8.0-beta2"
   },
   "repository": {
     "type": "git",
