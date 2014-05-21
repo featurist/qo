@@ -16,10 +16,9 @@ describe 'qo'
   writeQoFile (fn) containing (source)! =
     if (source :: Function)
       source := source()!
-        
+
     fs.writeFile (fn, source, ^)!
-      
-      
+
   qo (task, cwd: nil)! =
     qoExe = path.join (process.cwd (), 'bin/qo')
     ps.exec 'bash' '-c' "#(qoExe) #(task)" {cwd = cwd} ^!
@@ -45,13 +44,13 @@ describe 'qo'
           done ()
 
   describe 'arguments'
-    describe 'argument list'
-      beforeEach
-        mkdirp 'test/scratch' ^!
-        writeQoFile 'test/scratch/qo.pogo' containing!
-          'task "run" @(args)
-             console.log [args.0, args.1]'
+    beforeEach
+      mkdirp 'test/scratch' ^!
+      writeQoFile 'test/scratch/qo.pogo' containing!
+        'task "run" @(args)
+           console.log (args)'
 
+    describe 'argument list'
       it 'can get command line arguments'
         qo 'run a b' (cwd: 'test/scratch')!.should.equal "[ 'a', 'b' ]\n"
 
@@ -62,8 +61,8 @@ describe 'qo'
       beforeEach
         mkdirp 'test/scratch' ^!
         writeQoFile 'test/scratch/qo.pogo' containing!
-          'task "run" @(args)
-             console.log [args.cat, args.dog]'
+          'task "run" @(args, opts)
+             console.log [opts.cat, opts.dog]'
 
       it 'passes switch values to the task'
         qo 'run --cat c --dog d' (cwd: 'test/scratch')!.should.equal "[ 'c', 'd' ]\n"
@@ -86,7 +85,7 @@ describe 'qo'
 
          task "c" (description: "runs c")
            console.log "running stuff"'
-    
+
     it 'prints the tasks and their descriptions'
       output =
         'tasks:
@@ -96,7 +95,7 @@ describe 'qo'
              b, runs b
 
              c, runs c
-         
+
          '
 
       qo '' (cwd: 'test/scratch')!.should.equal (output)

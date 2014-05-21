@@ -40,18 +40,19 @@ isFunction (f) asynchronous =
 
 parseArgs () =
     args = argv._.slice 0
+    opts = {}
 
     for @(s) in (argv)
-        if (argv.hasOwnProperty (s))
-            args.(s) = argv.(s)
+        if (argv.hasOwnProperty (s) @and s != '_' @and s != '$0')
+            opts.(s) = argv.(s)
 
-    args
+    { arguments = args, options = opts }
 
 runTask (name) from (tasks) withArgs (args)! =
     task = tasks.(name)
 
     if (task)
-        result = task.function (args)
+        result = task.function (args.arguments, args.options)
         if (result @and (result.then :: Function))
             result!
     else

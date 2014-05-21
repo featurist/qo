@@ -20,8 +20,8 @@ Then
 
 ### named arguments
 
-    task 'hi' @(args)
-        console.log "hi #(args.name)"
+    task 'hi' @(args, name: nil)
+        console.log "hi #(name)"
 
 Then
 
@@ -45,7 +45,7 @@ Inevitably your tasks will need to be asynchronous.
     ncp = require 'ncp'
 
     task 'copy'
-        ncp 'original.txt' 'copy.txt'!
+        ncp 'original.txt' 'copy.txt' ^!
         console.log 'all done'
 
 Then

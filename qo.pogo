@@ -6,3 +6,7 @@ task 'build'
 
 task 'test' (description: 'test with mocha')
     ps.spawn! 'mocha' 'test/qoSpec.pogo'
+
+task 'haha' @(args, opts)
+  console.log (args)
+  console.log (opts)
