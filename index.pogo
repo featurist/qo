@@ -16,8 +16,9 @@ findParentDirectoryWhere (predicate) =
 
 findQo()! =
     foundDir = findParentDirectoryWhere! @(dir)
-        fs.exists (path.join (dir, 'qo.pogo')) @(e)
-            continuation (nil, e)
+        @new Promise @(onSuccess)
+            fs.exists (path.join (dir, 'qo.pogo')) @(e)
+                onSuccess (e)
 
     if (foundDir)
         path.join (foundDir, 'qo.pogo')
@@ -50,7 +51,9 @@ runTask (name) from (tasks) withArgs (args)! =
     task = tasks.(name)
 
     if (task)
-        task.function (args)!
+        result = task.function (args)
+        if (result @and (result.then :: Function))
+            result!
     else
         process.stderr.write "could not find task `#(name)'"
         process.exit 1
