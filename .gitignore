@@ -1,2 +1,3 @@
 test/scratch/
 node_modules/
+*.sw[op]
