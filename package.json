@@ -1,6 +1,6 @@
 {
   "name": "qo",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "finally, a task runner designed for insect people",
   "main": "index.js",
   "bin": "bin/qo",
@@ -22,7 +22,7 @@
     "rimraf": "~2.2.2",
     "chai": "~1.8.1",
     "mocha": "~1.18.2",
-    "pogo": "~0.8.0-beta2"
+    "pogo": "~0.8.0-beta7"
   },
   "repository": {
     "type": "git",
