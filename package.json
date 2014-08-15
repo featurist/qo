@@ -14,7 +14,7 @@
     "optimist": "~0.6.0"
   },
   "peerDependencies": {
-    "pogo": "~0.8.0 ~0.9.0"
+    "pogo": "^0.8.0 || ^0.9.0"
   },
   "devDependencies": {
     "qo-ps": "0.0.4",
