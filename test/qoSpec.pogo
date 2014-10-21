@@ -3,7 +3,7 @@ rimraf = require 'rimraf'
 ps = require '../../qo-ps'
 fs = require 'fs'
 path = require 'path'
-require 'chai'.should ()
+should = require 'chai'.should ()
 childProcess = require 'child_process'
 
 describe 'qo'
@@ -99,3 +99,19 @@ describe 'qo'
          '
 
       qo '' (cwd: 'test/scratch')!.should.equal (output)
+
+  describe 'exceptions'
+    beforeEach
+      mkdirp 'test/scratch' ^!
+
+    it 'returns 1 when an exception occurs'
+      writeQoFile 'test/scratch/qo.pogo' thatDoes 'throw (new (Error "argh!"))' on 'run'!
+      promise! @(result, error)
+        p = childProcess.spawn (path.join (process.cwd (), 'bin/qo'), ['run'], {cwd = 'test/scratch'})
+
+        p.on 'close' @(exit)
+          try
+            exit.should.eql 1
+            result()
+          catch(e)
+            error(e)

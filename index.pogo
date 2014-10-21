@@ -2,6 +2,7 @@ fs = require 'fs'
 path = require 'path'
 pogo = require 'pogo'
 argv = require 'optimist'.argv
+util = require 'util'
 
 findParentDirectoryWhere (predicate) =
     findParent (dir) where (p)! =
@@ -52,9 +53,13 @@ runTask (name) from (tasks) withArgs (args)! =
     task = tasks.(name)
 
     if (task)
-        result = task.function (args.arguments, args.options)
-        if (result @and (result.then :: Function))
-            result!
+        try
+          result = task.function (args.arguments, args.options)
+          if (result @and (result.then :: Function))
+              result!
+        catch (e)
+          process.stderr.write(util.inspect(e))
+          process.exit 1
     else
         process.stderr.write "could not find task `#(name)'"
         process.exit 1

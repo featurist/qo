@@ -10,3 +10,6 @@ task 'test' (description: 'test with mocha')
 task 'haha' @(args, opts)
   console.log (args)
   console.log (opts)
+
+task 'blah'
+  throw (new (Error 'asdlfksdf'))

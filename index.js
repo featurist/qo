@@ -1,11 +1,12 @@
 (function() {
     var Promise = require("bluebird");
     var self = this;
-    var fs, path, pogo, argv, findParentDirectoryWhere, findQo, defineTasks, isFunctionAsynchronous, parseArgs, runTaskFromWithArgs, displayTasks;
+    var fs, path, pogo, argv, util, findParentDirectoryWhere, findQo, defineTasks, isFunctionAsynchronous, parseArgs, runTaskFromWithArgs, displayTasks;
     fs = require("fs");
     path = require("path");
     pogo = require("pogo");
     argv = require("optimist").argv;
+    util = require("util");
     findParentDirectoryWhere = function(predicate) {
         var findParentWhere, gen1_asyncResult;
         return new Promise(function(gen2_onFulfilled) {
@@ -94,14 +95,19 @@
             gen2_onFulfilled(Promise.resolve(function() {
                 if (task) {
                     return new Promise(function(gen2_onFulfilled) {
-                        result = task.function(args.arguments, args.options);
-                        gen2_onFulfilled(Promise.resolve(function() {
-                            if (result && result.then instanceof Function) {
-                                return new Promise(function(gen2_onFulfilled) {
-                                    gen2_onFulfilled(Promise.resolve(result));
-                                });
-                            }
-                        }()));
+                        gen2_onFulfilled(new Promise(function(gen2_onFulfilled) {
+                            result = task.function(args.arguments, args.options);
+                            gen2_onFulfilled(Promise.resolve(function() {
+                                if (result && result.then instanceof Function) {
+                                    return new Promise(function(gen2_onFulfilled) {
+                                        gen2_onFulfilled(Promise.resolve(result));
+                                    });
+                                }
+                            }()));
+                        }).then(void 0, function(e) {
+                            process.stderr.write(util.inspect(e));
+                            return process.exit(1);
+                        }));
                     });
                 } else {
                     process.stderr.write("could not find task `" + name + "'");
