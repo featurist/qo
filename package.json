@@ -1,6 +1,6 @@
 {
   "name": "qo",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "finally, a task runner designed for insect people",
   "main": "index.js",
   "bin": "bin/qo",
