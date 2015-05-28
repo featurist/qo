@@ -12,4 +12,5 @@ task 'haha' @(args, opts)
   console.log (opts)
 
 task 'blah'
-  throw (new (Error 'asdlfksdf'))
+  promise! @(result, error)
+    error (new (Error 'asdlfksdf'))

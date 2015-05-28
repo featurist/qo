@@ -1,6 +1,6 @@
 # qo
 
-A task runner for insect people. And for people who use [pogoscript](http://pogoscript.org/).
+A task runner for insect people.
 
 ## install
 
@@ -8,63 +8,92 @@ A task runner for insect people. And for people who use [pogoscript](http://pogo
 
 ## how to use
 
-Write a file `qo.pogo`:
+Write a file `qo.js`:
 
-    task 'hi'
-        console.log 'hi!'
+```js
+task('hi', function () {
+  console.log('hi!');
+});
+```
 
 Then
 
-    # qo hi
-    hi!
+```bash
+# qo hi
+hi!
+```
 
 ### named arguments
 
-    task 'hi' @(args, name: nil)
-        console.log "hi #(name)"
+```js
+task('hi', function (args, options) {
+  console.log("hi " + options.name)"
+});
+```
 
 Then
 
-    # qo hi --name jack
-    hi jack
+```bash
+# qo hi --name jack
+hi jack
+```
 
 ### lists of arguments
 
-    task 'hi' @(args)
-        console.log "hi #(args.join ', ')"
+```js
+task('hi', function (args) {
+  console.log("hi " + args.join(', '));
+});
+```
 
 Then
 
-    # qo hi jack jill jesse
-    hi jack, jill, jesse
+```bash
+# qo hi jack jill jesse
+hi jack, jill, jesse
+```
 
-### asynchrony
+### promises
 
-Inevitably your tasks will need to be asynchronous.
+If you return a promise, and it's rejected, then `qo` will print the error exit with `1`.
 
     ncp = require 'ncp'
 
-    task 'copy'
-        ncp 'original.txt' 'copy.txt' ^!
-        console.log 'all done'
+```js
+var fs = require('fs-promise');
+
+task('print', function (args) {
+  return fs.readFile(args[0], 'utf-8').then(function (contents) {
+    console.log(contents);
+  });
+});
+```
 
 Then
 
-    # qo copy
-    all done
+```bash
+# qo print some-file.txt
+Error: ENOENT, open 'asdf'
+    at Error (native)
+```
 
 ### task descriptions
 
-    task 'hi' (desc: 'says hi')
-        console.log 'hi'
+```js
+task('hi', {desc: 'says hi'}, function () {
+  console.log('hi');
+});
+```
 
 Then
 
-    # qo
-    tasks:
+```bash
+# qo
+tasks:
 
-        hi, says hi
+    hi, says hi
+```
 
 # pogoscript
 
-`qo` uses pogoscript because it does asynchronous stuff very nicely. Learn more about pogoscript from pogoscript's [cheatsheet](http://pogoscript.org/cheatsheet.html).
+you can write a `qo.pogo` file too

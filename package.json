@@ -5,24 +5,25 @@
   "main": "index.js",
   "bin": "bin/qo",
   "scripts": {
-    "test": "mocha test/*Spec.pogo",
-    "prepublish": "pogo -c index.pogo"
+    "test": "mocha test/*Spec.pogo"
   },
   "author": "Tim Macfarlane <timmacfarlane@gmail.com>",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "glob": "5.0.10",
     "optimist": "~0.6.0"
   },
   "peerDependencies": {
     "pogo": "~0.8.0 || ~0.9.0"
   },
   "devDependencies": {
-    "qo-ps": "0.0.4",
-    "mkdirp": "~0.3.5",
-    "rimraf": "~2.2.2",
+    "bluebird": "2.9.26",
     "chai": "~1.8.1",
-    "mocha": "~1.18.2",
-    "pogo": "~0.8.0-beta7"
+    "mkdirp": "~0.3.5",
+    "mocha": "2.2.5",
+    "pogo": "0.9.10",
+    "qo-ps": "0.0.4",
+    "rimraf": "~2.2.2"
   },
   "repository": {
     "type": "git",
