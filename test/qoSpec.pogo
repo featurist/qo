@@ -84,7 +84,10 @@ describe 'qo'
            console.log "running stuff"
 
          task "c" (description: "runs c")
-           console.log "running stuff"'
+           console.log "running stuff"
+
+         task "d <name> [-x] [-y] [-z <env>]" (description: "runs c")
+           console.log "running d"'
 
     it 'prints the tasks and their descriptions'
       output =
@@ -96,9 +99,14 @@ describe 'qo'
 
              c, runs c
 
+             d <name> [-x] [-y] [-z <env>], runs c
+
          '
 
       qo '' (cwd: 'test/scratch')!.should.equal (output)
+
+    it 'can run a task, even if it has arguments in the task name'
+      qo! 'd' (cwd: 'test/scratch').should.equal "running d\n"
 
   describe 'exceptions'
     beforeEach

@@ -94,6 +94,23 @@ tasks:
     hi, says hi
 ```
 
+You can also put descriptive arguments into the task name:
+
+```js
+task('hi <name>', {desc: 'says hi to <name>'}, function (args) {
+  console.log('hi ' + args[0]);
+});
+```
+
+Then
+
+```bash
+# qo
+tasks:
+
+    hi <name>, says hi to <name>
+```
+
 # pogoscript
 
-you can write a `qo.pogo` file too
+you can write a `qo.pogo` file too. Pogoscript happens to be very useful for writing heavily asynchronous code, and great for little scripts that get things done.

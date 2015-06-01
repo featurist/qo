@@ -39,7 +39,7 @@ function findQo() {
 function defineTasks() {
   var tasks = {};
 
-  global.task = function(name, fn, options) {
+  global.task = function(command, fn, options) {
     if (typeof options === 'function') {
       var tmp = fn;
       fn = options;
@@ -48,10 +48,12 @@ function defineTasks() {
 
     var description = options && options.hasOwnProperty('description') && options.description !== undefined? options.description: undefined;
     var desc = options && options.hasOwnProperty('desc') && options.desc !== undefined? options.desc: undefined;
+    var name = command.trim().split(/\s+/)[0];
 
     tasks[name] = {
       "function": fn,
       description: desc || description,
+      command: command,
       name: name
     };
   };
@@ -116,7 +118,7 @@ function displayTasks(tasks) {
         ? ', ' + task.description
         : '';
 
-    console.log("    " + task.name + "" + description);
+    console.log("    " + task.command + "" + description);
     console.log();
   });
 }
