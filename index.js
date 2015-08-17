@@ -1,4 +1,3 @@
-var Promise = require("bluebird");
 var fs = require("fs");
 var path = require("path");
 var argv = require("optimist").argv;
