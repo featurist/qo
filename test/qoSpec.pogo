@@ -1,6 +1,6 @@
 mkdirp = require 'mkdirp'
 rimraf = require 'rimraf'
-ps = require '../../qo-ps'
+ps = require 'qo-ps'
 fs = require 'fs'
 path = require 'path'
 should = require 'chai'.should ()
@@ -21,7 +21,7 @@ describe 'qo'
 
   qo (task, cwd: nil)! =
     qoExe = path.join (process.cwd (), 'bin/qo')
-    ps.exec 'bash' '-c' "#(qoExe) #(task)" {cwd = cwd} ^!
+    ps.exec 'bash' '-c' "#(qoExe) #(task)" {cwd = cwd}!
 
   beforeEach
     rimraf 'test/scratch' ^!

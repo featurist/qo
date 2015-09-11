@@ -14,15 +14,13 @@
     "optimist": "~0.6.0"
   },
   "peerDependencies": {
-    "pogo": ">= 0.8.0"
+    "pogo": ">=0.9.10"
   },
   "devDependencies": {
-    "bluebird": "2.9.26",
     "chai": "~1.8.1",
     "mkdirp": "~0.3.5",
     "mocha": "2.2.5",
-    "pogo": "0.9.10",
-    "qo-ps": "0.0.4",
+    "pogo": ">=0.9.10",
     "rimraf": "~2.2.2"
   },
   "repository": {
