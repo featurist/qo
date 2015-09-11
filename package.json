@@ -21,7 +21,8 @@
     "mkdirp": "~0.3.5",
     "mocha": "2.2.5",
     "pogo": ">=0.9.10",
-    "rimraf": "~2.2.2"
+    "rimraf": "~2.2.2",
+    "shell-quote": "1.4.3"
   },
   "repository": {
     "type": "git",
