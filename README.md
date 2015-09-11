@@ -27,7 +27,7 @@ hi!
 
 ```js
 task('hi', function (args, options) {
-  console.log("hi " + options.name)"
+  console.log("hi " + options.name);
 });
 ```
 
