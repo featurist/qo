@@ -73,7 +73,7 @@ Then
 
 ```bash
 # qo print some-file.txt
-Error: ENOENT, open 'asdf'
+Error: ENOENT, open 'some-file.txt'
     at Error (native)
 ```
 
