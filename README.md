@@ -1,4 +1,4 @@
-# qo
+# qo [![npm version](https://img.shields.io/npm/v/qo.svg)](https://www.npmjs.com/package/qo) [![npm](https://img.shields.io/npm/dm/qo.svg)](https://www.npmjs.com/package/qo) [![Build Status](https://travis-ci.org/featurist/qo.svg?branch=master)](https://travis-ci.org/featurist/qo)
 
 A task runner for insect people.
 
