@@ -57,8 +57,6 @@ hi jack, jill, jesse
 
 If you return a promise, and it's rejected, then `qo` will print the error exit with `1`.
 
-    ncp = require 'ncp'
-
 ```js
 var fs = require('fs-promise');
 

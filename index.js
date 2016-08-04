@@ -1,4 +1,3 @@
-var fs = require("fs");
 var path = require("path");
 var argv = require("optimist").argv;
 var util = require("util");
